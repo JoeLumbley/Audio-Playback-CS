@@ -201,11 +201,11 @@ namespace Audio_Playback_CS
 
                 string CommandSeekToStart = $"seek {SoundName} to start";
 
-                string CommandPlayRepeat = $"play {SoundName} repeat";
-
                 StringBuilder ReturnString = new(128);
 
                 mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
+
+                string CommandPlayRepeat = $"play {SoundName} repeat";
 
                 if (mciSendStringW(CommandPlayRepeat, ReturnString, 0, Handle) != 0)
                 {
@@ -263,9 +263,9 @@ namespace Audio_Playback_CS
 
                     string CommandPause = $"pause {SoundName} notify";
 
-                    StringBuilder returnString = new(128);
+                    StringBuilder ReturnString = new(128);
 
-                    if (mciSendStringW(CommandPause, returnString, 0, Handle) == 0)
+                    if (mciSendStringW(CommandPause, ReturnString, 0, Handle) == 0)
                     {
                         return true; // The sound is paused.
 
