@@ -231,11 +231,11 @@ namespace Audio_Playback_CS
 
                     string CommandSeekToStart = $"seek {SoundName} to start";
 
-                    string CommandPlay = $"play {SoundName} notify";
-
                     StringBuilder returnString = new(128);
 
                     mciSendStringW(CommandSeekToStart, returnString, 0, IntPtr.Zero);
+
+                    string CommandPlay = $"play {SoundName} notify";
 
                     if (mciSendStringW(CommandPlay, returnString, 0, Handle) == 0)
                     {
