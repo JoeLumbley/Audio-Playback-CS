@@ -168,9 +168,9 @@ namespace Audio_Playback_CS
 
                         StringBuilder returnString = new(128);
 
+                        // Was the volume set?
                         if (mciSendStringW(CommandVolume, returnString, 0, IntPtr.Zero) == 0)
                         {
-
                             return true; // The volume was set.
 
                         }
