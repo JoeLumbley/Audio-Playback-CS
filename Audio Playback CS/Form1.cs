@@ -267,7 +267,7 @@ namespace Audio_Playback_CS
 
                     if (mciSendStringW(CommandPause, returnString, 0, Handle) == 0)
                     {
-                        return true; // The sound is playing.
+                        return true; // The sound is paused.
 
                     }
 
@@ -275,7 +275,7 @@ namespace Audio_Playback_CS
 
             }
 
-            return false; // The sound is not playing.
+            return false; // The sound is not paused.
 
         }
 
