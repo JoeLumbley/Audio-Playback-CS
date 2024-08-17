@@ -203,11 +203,11 @@ namespace Audio_Playback_CS
 
                 string CommandPlayRepeat = $"play {SoundName} repeat";
 
-                StringBuilder returnString = new(128);
+                StringBuilder ReturnString = new(128);
 
-                mciSendStringW(CommandSeekToStart, returnString, 0, IntPtr.Zero);
+                mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
 
-                if (mciSendStringW(CommandPlayRepeat, returnString, 0, Handle) != 0)
+                if (mciSendStringW(CommandPlayRepeat, ReturnString, 0, Handle) != 0)
                 {
                     return false; // The sound is not playing.
 
@@ -231,13 +231,13 @@ namespace Audio_Playback_CS
 
                     string CommandSeekToStart = $"seek {SoundName} to start";
 
-                    StringBuilder returnString = new(128);
+                    StringBuilder ReturnString = new(128);
 
-                    mciSendStringW(CommandSeekToStart, returnString, 0, IntPtr.Zero);
+                    mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
 
                     string CommandPlay = $"play {SoundName} notify";
 
-                    if (mciSendStringW(CommandPlay, returnString, 0, Handle) == 0)
+                    if (mciSendStringW(CommandPlay, ReturnString, 0, Handle) == 0)
                     {
                         return true; // The sound is playing.
 
@@ -347,13 +347,13 @@ namespace Audio_Playback_CS
         {
             if (Sounds != null)
             {
-                foreach (var sound in Sounds)
+                foreach (var Sound in Sounds)
                 {
-                    string CommandClose = $"close {sound}";
+                    string CommandClose = $"close {Sound}";
 
-                    StringBuilder returnString = new(128);
+                    StringBuilder ReturnString = new(128);
 
-                    mciSendStringW(CommandClose, returnString, 0, IntPtr.Zero);
+                    mciSendStringW(CommandClose, ReturnString, 0, IntPtr.Zero);
 
                 }
 
