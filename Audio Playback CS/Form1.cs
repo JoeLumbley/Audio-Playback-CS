@@ -101,7 +101,7 @@ namespace Audio_Playback_CS
 
                 string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
 
-                StringBuilder returnString = new(128);
+                StringBuilder ReturnString = new(128);
 
                 // Do we have sounds?
                 if (Sounds != null)
@@ -112,7 +112,7 @@ namespace Audio_Playback_CS
                     {   // No, the sound is not in the array.
 
                         // Did the sound file open?
-                        if (mciSendStringW(CommandOpen, returnString, 0, IntPtr.Zero) == 0)
+                        if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
                         {   // Yes, the sound file did open.
 
                             // Add the sound to the Sounds array.
@@ -130,7 +130,7 @@ namespace Audio_Playback_CS
                 {   // No, we do not have sounds.
 
                     // Did the sound file open?
-                    if (mciSendStringW(CommandOpen, returnString, 0, IntPtr.Zero) == 0)
+                    if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
                     {   // Yes, the sound file did open.
 
                         // Start the Sounds array with the sound.
@@ -166,10 +166,10 @@ namespace Audio_Playback_CS
 
                         string CommandVolume = $"setaudio {SoundName} volume to {Level}";
 
-                        StringBuilder returnString = new(128);
+                        StringBuilder ReturnString = new(128);
 
                         // Was the volume set?
-                        if (mciSendStringW(CommandVolume, returnString, 0, IntPtr.Zero) == 0)
+                        if (mciSendStringW(CommandVolume, ReturnString, 0, IntPtr.Zero) == 0)
                         {
                             return true; // The volume was set.
 
