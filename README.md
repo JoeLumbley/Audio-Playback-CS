@@ -27,23 +27,9 @@ Clone the repository now and embark on a transformative audio playback experienc
 
 
 
-# Audio Playback in C# - A Detailed Walkthrough
+# Code Walkthrough
 
 Welcome to the lesson on how to create an audio playback application in C#. In this walkthrough, we will break down a piece of code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
-
-## Table of Contents
-1. [Namespaces and Struct Definition](#namespaces-and-struct-definition)
-2. [Adding Sounds](#adding-sounds)
-3. [Setting Volume](#setting-volume)
-4. [Looping Sounds](#looping-sounds)
-5. [Playing Sounds](#playing-sounds)
-6. [Pausing Sounds](#pausing-sounds)
-7. [Managing Overlapping Sounds](#managing-overlapping-sounds)
-8. [Sending MCI Commands](#sending-mci-commands)
-9. [Getting Sound Status](#getting-sound-status)
-10. [Closing Sounds](#closing-sounds)
-11. [Form Class and Event Handlers](#form-class-and-event-handlers)
-12. [Creating Sound Files](#creating-sound-files)
 
 ---
 
@@ -461,6 +447,22 @@ This code provides a comprehensive example of how to create an audio playback ap
 
 Feel free to experiment with the code and modify it to enhance your learning experience!
 
+
+---
+
+## Table of Contents
+1. [Namespaces and Struct Definition](#namespaces-and-struct-definition)
+2. [Adding Sounds](#adding-sounds)
+3. [Setting Volume](#setting-volume)
+4. [Looping Sounds](#looping-sounds)
+5. [Playing Sounds](#playing-sounds)
+6. [Pausing Sounds](#pausing-sounds)
+7. [Managing Overlapping Sounds](#managing-overlapping-sounds)
+8. [Sending MCI Commands](#sending-mci-commands)
+9. [Getting Sound Status](#getting-sound-status)
+10. [Closing Sounds](#closing-sounds)
+11. [Form Class and Event Handlers](#form-class-and-event-handlers)
+12. [Creating Sound Files](#creating-sound-files)
 
 
 
