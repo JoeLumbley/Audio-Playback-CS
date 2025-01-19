@@ -124,6 +124,7 @@ namespace Audio_Playback_CS
 
                 return SendMciCommand(CommandSeekToStart, IntPtr.Zero) &&
                        SendMciCommand(CommandPlayRepeat, IntPtr.Zero); // The sound is looping.
+
             }
 
             Debug.Print($"The sound is not looping {SoundName}");
@@ -135,29 +136,40 @@ namespace Audio_Playback_CS
         private bool PlaySound(string SoundName)
         {
             // Do we have sounds and is the sound in the array?
-            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
-            {
-                // We have sounds and the sound is in the array.
+            if (Sounds != null && Sounds.Contains(SoundName))
+            {   // We have sounds and the sound is in the array.
+
                 string CommandSeekToStart = $"seek {SoundName} to start";
+
                 string CommandPlay = $"play {SoundName} notify";
+
                 return SendMciCommand(CommandSeekToStart, IntPtr.Zero) &&
                        SendMciCommand(CommandPlay, IntPtr.Zero); // The sound is playing.
+
             }
+
             Debug.Print($"The sound is not playing {SoundName}");
+
             return false; // The sound is not playing.
+
         }
 
         public bool PauseSound(string SoundName)
         {
             // Do we have sounds and is the sound in the array?
-            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
-            {
-                // We have sounds and the sound is in the array.
+            if (Sounds != null && Sounds.Contains(SoundName))
+            {   // We have sounds and the sound is in the array.
+
                 string CommandPause = $"pause {SoundName} notify";
+
                 return SendMciCommand(CommandPause, IntPtr.Zero); // The sound is paused.
+
             }
+
             Debug.Print($"The sound is not paused {SoundName}");
+
             return false; // The sound is not paused.
+
         }
 
         public bool IsPlaying(string SoundName)
@@ -212,7 +224,7 @@ namespace Audio_Playback_CS
             try
             {
                 // Do we have sounds and is the sound in the array?
-                if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
+                if (Sounds != null && Sounds.Contains(SoundName))
                 {
                     // We have sounds and the sound is in the array.
                     string CommandStatus = $"status {SoundName} {StatusType}";
