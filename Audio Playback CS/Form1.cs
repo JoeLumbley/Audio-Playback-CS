@@ -175,6 +175,7 @@ namespace Audio_Playback_CS
         public bool IsPlaying(string SoundName)
         {
             return GetStatus(SoundName, "mode") == "playing";
+
         }
 
         public void AddOverlapping(string SoundName, string FilePath)
@@ -182,7 +183,9 @@ namespace Audio_Playback_CS
             foreach (string Suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
             {
                 AddSound(SoundName + Suffix, FilePath);
+
             }
+
         }
 
         public void PlayOverlapping(string SoundName)
@@ -192,9 +195,13 @@ namespace Audio_Playback_CS
                 if (!IsPlaying(SoundName + Suffix))
                 {
                     PlaySound(SoundName + Suffix);
+
                     return;
+
                 }
+
             }
+
         }
 
         public void SetVolumeOverlapping(string SoundName, int Level)
@@ -202,12 +209,15 @@ namespace Audio_Playback_CS
             foreach (string Suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
             {
                 SetVolume(SoundName + Suffix, Level);
+
             }
+
         }
 
         private bool SendMciCommand(string command, IntPtr hwndCallback)
         {
             StringBuilder ReturnString = new StringBuilder(128);
+
             try
             {
                 return mciSendStringW(command, ReturnString, 0, hwndCallback) == 0;
@@ -215,8 +225,11 @@ namespace Audio_Playback_CS
             catch (Exception ex)
             {
                 Debug.Print($"Error: {ex.Message}");
+
                 return false;
+
             }
+
         }
 
         private string GetStatus(string SoundName, string StatusType)
@@ -225,19 +238,26 @@ namespace Audio_Playback_CS
             {
                 // Do we have sounds and is the sound in the array?
                 if (Sounds != null && Sounds.Contains(SoundName))
-                {
-                    // We have sounds and the sound is in the array.
+                {   // We have sounds and the sound is in the array.
+
                     string CommandStatus = $"status {SoundName} {StatusType}";
+
                     StringBuilder StatusReturn = new StringBuilder(128);
+
                     mciSendStringW(CommandStatus, StatusReturn, 128, IntPtr.Zero);
+
                     return StatusReturn.ToString().Trim().ToLower();
+
                 }
             }
             catch (Exception ex)
             {
                 Debug.Print($"Error getting status: {ex.Message}");
+
             }
+
             return string.Empty;
+
         }
 
         public void CloseSounds()
@@ -247,47 +267,20 @@ namespace Audio_Playback_CS
                 foreach (string Sound in Sounds)
                 {
                     string CommandClose = $"close {Sound}";
+
                     SendMciCommand(CommandClose, IntPtr.Zero);
+
                 }
+
             }
+
         }
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public partial class Form1 : Form
     {
-
-        //[DllImport("winmm.dll", EntryPoint = "mciSendStringW")]
-        //private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] string lpszCommand,
-        //                                         [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszReturnString,
-        //                                         uint cchReturn,
-        //                                         IntPtr hwndCallback);
-
-        //private  string[]?  Sounds;
-
         private AudioPlayer Player;
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -308,6 +301,8 @@ namespace Audio_Playback_CS
             Player.SetVolumeOverlapping("CashCollected", 900);
 
             Player.LoopSound("Music");
+
+            Debug.Print($"Running... {DateTime.Now}");
 
         }
 
