@@ -29,7 +29,7 @@ Clone the repository now and embark on a transformative audio playback experienc
 
 # Code Walkthrough
 
-Welcome to the lesson on how to create an audio playback application in C#. In this walkthrough, we will break down a piece of code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
+In this walkthrough, we will break down a piece of code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
 
 ---
 
