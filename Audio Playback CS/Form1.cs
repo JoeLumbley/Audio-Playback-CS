@@ -284,7 +284,7 @@ namespace Audio_Playback_CS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "Audio Playback CS - Code with Joe";
+            Text = "Audio Playback C# - Code with Joe";
 
             CreateSoundFiles();
 
