@@ -29,7 +29,7 @@ Clone the repository now and embark on a transformative audio playback experienc
 
 # Code Walkthrough
 
-In this walkthrough, we will break down a piece of code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
+In this walkthrough, we will break down the code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
 
 ---
 
