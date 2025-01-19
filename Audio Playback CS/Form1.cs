@@ -56,59 +56,80 @@ namespace Audio_Playback_CS
 
                     // Did the sound file open?
                     if (SendMciCommand(CommandOpen, IntPtr.Zero))
-                    {
-                        // Yes, the sound file did open.
+                    {   // Yes, the sound file did open.
+                        
                         // Start the Sounds array with the sound.
                         Sounds = new string[1];
+
                         Sounds[0] = SoundName;
+
                         return true; // The sound was added.
+
                     }
                 }
                 // Is the sound in the array already?
-                else if (Array.IndexOf(Sounds, SoundName) == -1)
-                {
-                    // Yes we have sounds and no the sound is not in the array.
+                else if (!Sounds.Contains(SoundName))
+                {   // Yes we have sounds and no the sound is not in the array.
+                    
                     // Did the sound file open?
                     if (SendMciCommand(CommandOpen, IntPtr.Zero))
-                    {
-                        // Yes, the sound file did open.
+                    {   // Yes, the sound file did open.
+
                         // Add the sound to the Sounds array.
                         Array.Resize(ref Sounds, Sounds.Length + 1);
+
                         Sounds[Sounds.Length - 1] = SoundName;
+
                         return true; // The sound was added.
+
                     }
+
                 }
+
             }
+
             Debug.Print($"The sound was not added {SoundName}");
+
             return false; // The sound was not added.
+
         }
 
         public bool SetVolume(string SoundName, int Level)
         {
             // Do we have sounds and is the sound in the array and is the level in the valid range?
-            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1 && Level >= 0 && Level <= 1000)
-            {
-                // We have sounds and the sound is in the array and the level is in range.
+            if (Sounds != null && Sounds.Contains(SoundName) && Level >= 0 && Level <= 1000)
+            {   // We have sounds and the sound is in the array and the level is in range.
+
                 string CommandVolume = $"setaudio {SoundName} volume to {Level}";
+
                 return SendMciCommand(CommandVolume, IntPtr.Zero); // The volume was set.
+
             }
+
             Debug.Print($"The volume was not set {SoundName}");
+
             return false; // The volume was not set.
+
         }
 
         public bool LoopSound(string SoundName)
         {
             // Do we have sounds and is the sound in the array?
-            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
-            {
-                // We have sounds and the sound is in the array.
+            if (Sounds != null && Sounds.Contains(SoundName))
+            {   // We have sounds and the sound is in the array.
+
                 string CommandSeekToStart = $"seek {SoundName} to start";
+
                 string CommandPlayRepeat = $"play {SoundName} repeat";
+
                 return SendMciCommand(CommandSeekToStart, IntPtr.Zero) &&
                        SendMciCommand(CommandPlayRepeat, IntPtr.Zero); // The sound is looping.
             }
+
             Debug.Print($"The sound is not looping {SoundName}");
+
             return false; // The sound is not looping.
+
         }
 
         private bool PlaySound(string SoundName)
