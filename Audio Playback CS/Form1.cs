@@ -286,7 +286,7 @@ namespace Audio_Playback_CS
         {
             Text = "Audio Playback CS - Code with Joe";
 
-            CreateSoundFileFromResource();
+            CreateSoundFiles();
 
             string FilePath = Path.Combine(Application.StartupPath, "level.mp3");
 
@@ -336,293 +336,73 @@ namespace Audio_Playback_CS
 
         }
 
-        //private bool AddSound(string SoundName, string FilePath)
-        //{
-        //    // Do we have a name and does the file exist?
-        //    if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
-        //    {   // Yes, we have a name and the file exists.
-
-        //        string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
-
-        //        StringBuilder ReturnString = new(128);
-
-        //        // Do we have sounds?
-        //        if (Sounds != null)
-        //        {   // Yes, we have sounds.
-
-        //            // Is the sound in the array already?
-        //            if (!Sounds.Contains(SoundName))
-        //            {   // No, the sound is not in the array.
-
-        //                // Did the sound file open?
-        //                if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
-        //                {   // Yes, the sound file did open.
-
-        //                    // Add the sound to the Sounds array.
-        //                    Array.Resize(ref Sounds, Sounds.Length + 1);
-
-        //                    Sounds[^1] = SoundName;
-
-        //                    return true; // The sound was added.
-
-        //                }
-        //            }
-
-        //        }
-        //        else
-        //        {   // No, we do not have sounds.
-
-        //            // Did the sound file open?
-        //            if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
-        //            {   // Yes, the sound file did open.
-
-        //                // Start the Sounds array with the sound.
-        //                Sounds = [SoundName];
-
-        //                return true; // The sound was added.
-
-
-
-        //            }
-
-        //        }
-
-        //    }
-
-        //    return false; // The sound was not added.
-
-        //}
-
-        //private bool SetVolume(string SoundName, int Level)
-        //{
-        //    // Do we have sounds?
-        //    if (Sounds != null)
-        //    {   // Yes, we have sounds.
-
-        //        // Is the sound in the sounds array?
-        //        if (Sounds.Contains(SoundName))
-        //        {   // Yes, the sound is the sounds array.
-
-        //            // Is the level in the valid range?
-        //            if (Level >= 0 && Level <= 1000)
-        //            {   // Yes, the sound is the sounds array.
-
-        //                string CommandVolume = $"setaudio {SoundName} volume to {Level}";
-
-        //                StringBuilder ReturnString = new(128);
-
-        //                // Was the volume set?
-        //                if (mciSendStringW(CommandVolume, ReturnString, 0, IntPtr.Zero) == 0)
-        //                {
-        //                    return true; // The volume was set.
-
-        //                }
-
-        //            }
-
-        //        }
-
-        //    }
-
-        //    return false;
-
-        //}
-
-        //private bool LoopSound(string SoundName)
-        //{
-        //    // Do we have sounds?
-        //    if (Sounds != null)
-        //    {   // Yes, we have sounds.
-
-        //        // Is the sound in the array?
-        //        if (!Sounds.Contains(SoundName))
-        //        {   // No, the sound is not in the array.
-
-        //            return false;
-
-        //        }
-
-        //        string CommandSeekToStart = $"seek {SoundName} to start";
-
-        //        StringBuilder ReturnString = new(128);
-
-        //        mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
-
-        //        string CommandPlayRepeat = $"play {SoundName} repeat";
-
-        //        if (mciSendStringW(CommandPlayRepeat, ReturnString, 0, Handle) != 0)
-        //        {
-        //            return false; // The sound is not playing.
-
-        //        }
-
-        //    }
-
-        //    return true; // The sound is playing.
-
-        //}
-
-        //private bool PlaySound(string SoundName)
-        //{
-        //    // Do we have sounds?
-        //    if (Sounds != null)
-        //    {   // Yes, we have sounds.
-
-        //        // Is the sound in the array?
-        //        if (Sounds.Contains(SoundName))
-        //        {   // Yes, the sound is in the array.
-
-        //            string CommandSeekToStart = $"seek {SoundName} to start";
-
-        //            StringBuilder ReturnString = new(128);
-
-        //            mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
-
-        //            string CommandPlay = $"play {SoundName} notify";
-
-        //            if (mciSendStringW(CommandPlay, ReturnString, 0, Handle) == 0)
-        //            {
-        //                return true; // The sound is playing.
-
-        //            }
-
-        //        }
-
-        //    }
-
-        //    return false; // The sound is not playing.
-
-        //}
-
-        //private bool PauseSound(string SoundName)
-        //{
-        //    // Do we have sounds?
-        //    if (Sounds != null)
-        //    {   // Yes, we have sounds.
-
-        //        // Is the sound in the array?
-        //        if (Sounds.Contains(SoundName))
-        //        {   // Yes, the sound is in the array.
-
-        //            string CommandPause = $"pause {SoundName} notify";
-
-        //            StringBuilder ReturnString = new(128);
-
-        //            if (mciSendStringW(CommandPause, ReturnString, 0, Handle) == 0)
-        //            {
-        //                return true; // The sound is paused.
-
-        //            }
-
-        //        }
-
-        //    }
-
-        //    return false; // The sound is not paused.
-
-        //}
-
-        //private bool IsPlaying(string SoundName)
-        //{
-        //    return GetStatus(SoundName, "mode") == "playing";
-
-        //}
-
-        //private void AddOverlapping(string SoundName, string FilePath)
-        //{
-        //    foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
-        //    {
-        //        AddSound(SoundName + suffix, FilePath);
-
-        //    }
-
-        //}
-
-        //private void PlayOverlapping(string SoundName)
-        //{
-        //    foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
-        //    {
-        //        if (!IsPlaying(SoundName + suffix))
-        //        {
-        //            PlaySound(SoundName + suffix);
-
-        //            break;
-
-        //        }
-
-        //    }
-
-        //}
-
-        //private void SetVolumeOverlapping(string SoundName, int Level)
-        //{
-        //    foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
-        //    {
-        //        SetVolume(SoundName + suffix, Level);
-
-        //    }
-
-        //}
-
-        //private string GetStatus(string SoundName, string StatusType)
-        //{
-        //    if (Sounds != null)
-        //    {
-        //        if (Sounds.Contains(SoundName))
-        //        {
-        //            string CommandStatus = $"status {SoundName} {StatusType}";
-
-        //            StringBuilder StatusReturn = new(128);
-
-        //            mciSendStringW(CommandStatus, StatusReturn, 128, IntPtr.Zero);
-
-        //            return StatusReturn.ToString().Trim().ToLower();
-
-        //        }
-
-        //    }
-
-        //    return string.Empty;
-
-        //}
-
-        //private void CloseSounds()
-        //{
-        //    if (Sounds != null)
-        //    {
-        //        foreach (var Sound in Sounds)
-        //        {
-        //            string CommandClose = $"close {Sound}";
-
-        //            StringBuilder ReturnString = new(128);
-
-        //            mciSendStringW(CommandClose, ReturnString, 0, IntPtr.Zero);
-
-        //        }
-
-        //    }
-
-        //}
-
-        private void CreateSoundFileFromResource()
+        private void CreateSoundFiles()
         {
-            string FilePath = Path.Combine(Application.StartupPath, "level.mp3");
+            string filePath = Path.Combine(Application.StartupPath, "level.mp3");
 
-            if (!File.Exists(FilePath))
+            CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.level);
+
+            filePath = Path.Combine(Application.StartupPath, "CashCollected.mp3");
+
+            CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.CashCollected);
+
+        }
+
+        private void CreateFileFromResource(string filePath, byte[] resource)
+        {
+            try
             {
-                File.WriteAllBytes(FilePath, Audio_Playback_CS.Resource1.level);
+                if (!File.Exists(filePath))
+                {
+                    File.WriteAllBytes(filePath, resource);
 
+                }
             }
-
-            FilePath = Path.Combine(Application.StartupPath, "CashCollected.mp3");
-
-            if (!File.Exists(FilePath))
+            catch (Exception ex)
             {
-                File.WriteAllBytes(FilePath, Audio_Playback_CS.Resource1.CashCollected);
+                Debug.Print($"Error creating file: {ex.Message}");
 
             }
 
         }
+
+
+        //private void CreateSoundFileFromResource()
+        //{
+        //    string FilePath = Path.Combine(Application.StartupPath, "level.mp3");
+
+        //    if (!File.Exists(FilePath))
+        //    {
+        //        File.WriteAllBytes(FilePath, Audio_Playback_CS.Resource1.level);
+
+        //    }
+
+        //    FilePath = Path.Combine(Application.StartupPath, "CashCollected.mp3");
+
+        //    if (!File.Exists(FilePath))
+        //    {
+        //        File.WriteAllBytes(FilePath, Audio_Playback_CS.Resource1.CashCollected);
+
+        //    }
+
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public Form1()
         {
