@@ -25,21 +25,248 @@
 
 // Level music by Joseph Lumbley Jr.
 
+//using System.Diagnostics;
+//using System.Runtime.InteropServices;
+//using System.Text;
+
+
+
+
+
+
+
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Diagnostics;
+using System.IO;
+
 
 namespace Audio_Playback_CS
 {
-    public partial class Form1 : Form
-    {
 
+    public struct AudioPlayer
+    {
         [DllImport("winmm.dll", EntryPoint = "mciSendStringW")]
         private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] string lpszCommand,
                                                  [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszReturnString,
-                                                 uint cchReturn,
-                                                 IntPtr hwndCallback);
+                                                 uint cchReturn, IntPtr hwndCallback);
 
-        private  string[]?  Sounds;
+        private string[]? Sounds;
+
+        public bool AddSound(string SoundName, string FilePath)
+        {
+            // Do we have a name and does the file exist?
+            if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
+            {
+                // Yes, we have a name and the file exists.
+                string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
+
+                // Do we have sounds?
+                if (Sounds == null)
+                {
+                    // No we do not have sounds.
+                    // Did the sound file open?
+                    if (SendMciCommand(CommandOpen, IntPtr.Zero))
+                    {
+                        // Yes, the sound file did open.
+                        // Start the Sounds array with the sound.
+                        Sounds = new string[1];
+                        Sounds[0] = SoundName;
+                        return true; // The sound was added.
+                    }
+                }
+                // Is the sound in the array already?
+                else if (Array.IndexOf(Sounds, SoundName) == -1)
+                {
+                    // Yes we have sounds and no the sound is not in the array.
+                    // Did the sound file open?
+                    if (SendMciCommand(CommandOpen, IntPtr.Zero))
+                    {
+                        // Yes, the sound file did open.
+                        // Add the sound to the Sounds array.
+                        Array.Resize(ref Sounds, Sounds.Length + 1);
+                        Sounds[Sounds.Length - 1] = SoundName;
+                        return true; // The sound was added.
+                    }
+                }
+            }
+            Debug.Print($"The sound was not added {SoundName}");
+            return false; // The sound was not added.
+        }
+
+        public bool SetVolume(string SoundName, int Level)
+        {
+            // Do we have sounds and is the sound in the array and is the level in the valid range?
+            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1 && Level >= 0 && Level <= 1000)
+            {
+                // We have sounds and the sound is in the array and the level is in range.
+                string CommandVolume = $"setaudio {SoundName} volume to {Level}";
+                return SendMciCommand(CommandVolume, IntPtr.Zero); // The volume was set.
+            }
+            Debug.Print($"The volume was not set {SoundName}");
+            return false; // The volume was not set.
+        }
+
+        public bool LoopSound(string SoundName)
+        {
+            // Do we have sounds and is the sound in the array?
+            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
+            {
+                // We have sounds and the sound is in the array.
+                string CommandSeekToStart = $"seek {SoundName} to start";
+                string CommandPlayRepeat = $"play {SoundName} repeat";
+                return SendMciCommand(CommandSeekToStart, IntPtr.Zero) &&
+                       SendMciCommand(CommandPlayRepeat, IntPtr.Zero); // The sound is looping.
+            }
+            Debug.Print($"The sound is not looping {SoundName}");
+            return false; // The sound is not looping.
+        }
+
+        private bool PlaySound(string SoundName)
+        {
+            // Do we have sounds and is the sound in the array?
+            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
+            {
+                // We have sounds and the sound is in the array.
+                string CommandSeekToStart = $"seek {SoundName} to start";
+                string CommandPlay = $"play {SoundName} notify";
+                return SendMciCommand(CommandSeekToStart, IntPtr.Zero) &&
+                       SendMciCommand(CommandPlay, IntPtr.Zero); // The sound is playing.
+            }
+            Debug.Print($"The sound is not playing {SoundName}");
+            return false; // The sound is not playing.
+        }
+
+        public bool PauseSound(string SoundName)
+        {
+            // Do we have sounds and is the sound in the array?
+            if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
+            {
+                // We have sounds and the sound is in the array.
+                string CommandPause = $"pause {SoundName} notify";
+                return SendMciCommand(CommandPause, IntPtr.Zero); // The sound is paused.
+            }
+            Debug.Print($"The sound is not paused {SoundName}");
+            return false; // The sound is not paused.
+        }
+
+        public bool IsPlaying(string SoundName)
+        {
+            return GetStatus(SoundName, "mode") == "playing";
+        }
+
+        public void AddOverlapping(string SoundName, string FilePath)
+        {
+            foreach (string Suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
+            {
+                AddSound(SoundName + Suffix, FilePath);
+            }
+        }
+
+        public void PlayOverlapping(string SoundName)
+        {
+            foreach (string Suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
+            {
+                if (!IsPlaying(SoundName + Suffix))
+                {
+                    PlaySound(SoundName + Suffix);
+                    return;
+                }
+            }
+        }
+
+        public void SetVolumeOverlapping(string SoundName, int Level)
+        {
+            foreach (string Suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
+            {
+                SetVolume(SoundName + Suffix, Level);
+            }
+        }
+
+        private bool SendMciCommand(string command, IntPtr hwndCallback)
+        {
+            StringBuilder ReturnString = new StringBuilder(128);
+            try
+            {
+                return mciSendStringW(command, ReturnString, 0, hwndCallback) == 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"Error: {ex.Message}");
+                return false;
+            }
+        }
+
+        private string GetStatus(string SoundName, string StatusType)
+        {
+            try
+            {
+                // Do we have sounds and is the sound in the array?
+                if (Sounds != null && Array.IndexOf(Sounds, SoundName) != -1)
+                {
+                    // We have sounds and the sound is in the array.
+                    string CommandStatus = $"status {SoundName} {StatusType}";
+                    StringBuilder StatusReturn = new StringBuilder(128);
+                    mciSendStringW(CommandStatus, StatusReturn, 128, IntPtr.Zero);
+                    return StatusReturn.ToString().Trim().ToLower();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"Error getting status: {ex.Message}");
+            }
+            return string.Empty;
+        }
+
+        public void CloseSounds()
+        {
+            if (Sounds != null)
+            {
+                foreach (string Sound in Sounds)
+                {
+                    string CommandClose = $"close {Sound}";
+                    SendMciCommand(CommandClose, IntPtr.Zero);
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public partial class Form1 : Form
+    {
+
+        //[DllImport("winmm.dll", EntryPoint = "mciSendStringW")]
+        //private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] string lpszCommand,
+        //                                         [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszReturnString,
+        //                                         uint cchReturn,
+        //                                         IntPtr hwndCallback);
+
+        //private  string[]?  Sounds;
+
+        private AudioPlayer Player;
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -49,37 +276,37 @@ namespace Audio_Playback_CS
 
             string FilePath = Path.Combine(Application.StartupPath, "level.mp3");
 
-            AddSound("Music", FilePath);
+            Player.AddSound("Music", FilePath);
 
-            SetVolume("Music", 600);
+            Player.SetVolume("Music", 600);
 
             FilePath = Path.Combine(Application.StartupPath, "CashCollected.mp3");
 
-            AddOverlapping("CashCollected", FilePath);
+            Player.AddOverlapping("CashCollected", FilePath);
 
-            SetVolumeOverlapping("CashCollected", 900);
+            Player.SetVolumeOverlapping("CashCollected", 900);
 
-            LoopSound("Music");
+            Player.LoopSound("Music");
 
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            PlayOverlapping("CashCollected");
+            Player.PlayOverlapping("CashCollected");
 
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (IsPlaying("Music"))
+            if (Player.IsPlaying("Music"))
             {
-                PauseSound("Music");
+                Player.PauseSound("Music");
 
                 button2.Text = "Play Loop";
             }
             else
             {
-                LoopSound("Music");
+                Player.LoopSound("Music");
 
                 button2.Text = "Pause Loop";
 
@@ -89,277 +316,277 @@ namespace Audio_Playback_CS
 
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            CloseSounds();
+            Player.CloseSounds();
 
         }
 
-        private bool AddSound(string SoundName, string FilePath)
-        {
-            // Do we have a name and does the file exist?
-            if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
-            {   // Yes, we have a name and the file exists.
+        //private bool AddSound(string SoundName, string FilePath)
+        //{
+        //    // Do we have a name and does the file exist?
+        //    if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
+        //    {   // Yes, we have a name and the file exists.
 
-                string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
+        //        string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
 
-                StringBuilder ReturnString = new(128);
+        //        StringBuilder ReturnString = new(128);
 
-                // Do we have sounds?
-                if (Sounds != null)
-                {   // Yes, we have sounds.
+        //        // Do we have sounds?
+        //        if (Sounds != null)
+        //        {   // Yes, we have sounds.
 
-                    // Is the sound in the array already?
-                    if (!Sounds.Contains(SoundName))
-                    {   // No, the sound is not in the array.
+        //            // Is the sound in the array already?
+        //            if (!Sounds.Contains(SoundName))
+        //            {   // No, the sound is not in the array.
 
-                        // Did the sound file open?
-                        if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
-                        {   // Yes, the sound file did open.
+        //                // Did the sound file open?
+        //                if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
+        //                {   // Yes, the sound file did open.
 
-                            // Add the sound to the Sounds array.
-                            Array.Resize(ref Sounds, Sounds.Length + 1);
+        //                    // Add the sound to the Sounds array.
+        //                    Array.Resize(ref Sounds, Sounds.Length + 1);
 
-                            Sounds[^1] = SoundName;
+        //                    Sounds[^1] = SoundName;
 
-                            return true; // The sound was added.
+        //                    return true; // The sound was added.
 
-                        }
-                    }
+        //                }
+        //            }
 
-                }
-                else
-                {   // No, we do not have sounds.
+        //        }
+        //        else
+        //        {   // No, we do not have sounds.
 
-                    // Did the sound file open?
-                    if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
-                    {   // Yes, the sound file did open.
+        //            // Did the sound file open?
+        //            if (mciSendStringW(CommandOpen, ReturnString, 0, IntPtr.Zero) == 0)
+        //            {   // Yes, the sound file did open.
 
-                        // Start the Sounds array with the sound.
-                        Sounds = [SoundName];
+        //                // Start the Sounds array with the sound.
+        //                Sounds = [SoundName];
 
-                        return true; // The sound was added.
+        //                return true; // The sound was added.
 
 
 
-                    }
+        //            }
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return false; // The sound was not added.
+        //    return false; // The sound was not added.
 
-        }
+        //}
 
-        private bool SetVolume(string SoundName, int Level)
-        {
-            // Do we have sounds?
-            if (Sounds != null)
-            {   // Yes, we have sounds.
+        //private bool SetVolume(string SoundName, int Level)
+        //{
+        //    // Do we have sounds?
+        //    if (Sounds != null)
+        //    {   // Yes, we have sounds.
 
-                // Is the sound in the sounds array?
-                if (Sounds.Contains(SoundName))
-                {   // Yes, the sound is the sounds array.
+        //        // Is the sound in the sounds array?
+        //        if (Sounds.Contains(SoundName))
+        //        {   // Yes, the sound is the sounds array.
 
-                    // Is the level in the valid range?
-                    if (Level >= 0 && Level <= 1000)
-                    {   // Yes, the sound is the sounds array.
+        //            // Is the level in the valid range?
+        //            if (Level >= 0 && Level <= 1000)
+        //            {   // Yes, the sound is the sounds array.
 
-                        string CommandVolume = $"setaudio {SoundName} volume to {Level}";
+        //                string CommandVolume = $"setaudio {SoundName} volume to {Level}";
 
-                        StringBuilder ReturnString = new(128);
+        //                StringBuilder ReturnString = new(128);
 
-                        // Was the volume set?
-                        if (mciSendStringW(CommandVolume, ReturnString, 0, IntPtr.Zero) == 0)
-                        {
-                            return true; // The volume was set.
+        //                // Was the volume set?
+        //                if (mciSendStringW(CommandVolume, ReturnString, 0, IntPtr.Zero) == 0)
+        //                {
+        //                    return true; // The volume was set.
 
-                        }
+        //                }
 
-                    }
+        //            }
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return false;
+        //    return false;
 
-        }
+        //}
 
-        private bool LoopSound(string SoundName)
-        {
-            // Do we have sounds?
-            if (Sounds != null)
-            {   // Yes, we have sounds.
+        //private bool LoopSound(string SoundName)
+        //{
+        //    // Do we have sounds?
+        //    if (Sounds != null)
+        //    {   // Yes, we have sounds.
 
-                // Is the sound in the array?
-                if (!Sounds.Contains(SoundName))
-                {   // No, the sound is not in the array.
+        //        // Is the sound in the array?
+        //        if (!Sounds.Contains(SoundName))
+        //        {   // No, the sound is not in the array.
 
-                    return false;
+        //            return false;
 
-                }
+        //        }
 
-                string CommandSeekToStart = $"seek {SoundName} to start";
+        //        string CommandSeekToStart = $"seek {SoundName} to start";
 
-                StringBuilder ReturnString = new(128);
+        //        StringBuilder ReturnString = new(128);
 
-                mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
+        //        mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
 
-                string CommandPlayRepeat = $"play {SoundName} repeat";
+        //        string CommandPlayRepeat = $"play {SoundName} repeat";
 
-                if (mciSendStringW(CommandPlayRepeat, ReturnString, 0, Handle) != 0)
-                {
-                    return false; // The sound is not playing.
+        //        if (mciSendStringW(CommandPlayRepeat, ReturnString, 0, Handle) != 0)
+        //        {
+        //            return false; // The sound is not playing.
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return true; // The sound is playing.
+        //    return true; // The sound is playing.
 
-        }
+        //}
 
-        private bool PlaySound(string SoundName)
-        {
-            // Do we have sounds?
-            if (Sounds != null)
-            {   // Yes, we have sounds.
+        //private bool PlaySound(string SoundName)
+        //{
+        //    // Do we have sounds?
+        //    if (Sounds != null)
+        //    {   // Yes, we have sounds.
 
-                // Is the sound in the array?
-                if (Sounds.Contains(SoundName))
-                {   // Yes, the sound is in the array.
+        //        // Is the sound in the array?
+        //        if (Sounds.Contains(SoundName))
+        //        {   // Yes, the sound is in the array.
 
-                    string CommandSeekToStart = $"seek {SoundName} to start";
+        //            string CommandSeekToStart = $"seek {SoundName} to start";
 
-                    StringBuilder ReturnString = new(128);
+        //            StringBuilder ReturnString = new(128);
 
-                    mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
+        //            mciSendStringW(CommandSeekToStart, ReturnString, 0, IntPtr.Zero);
 
-                    string CommandPlay = $"play {SoundName} notify";
+        //            string CommandPlay = $"play {SoundName} notify";
 
-                    if (mciSendStringW(CommandPlay, ReturnString, 0, Handle) == 0)
-                    {
-                        return true; // The sound is playing.
+        //            if (mciSendStringW(CommandPlay, ReturnString, 0, Handle) == 0)
+        //            {
+        //                return true; // The sound is playing.
 
-                    }
+        //            }
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return false; // The sound is not playing.
+        //    return false; // The sound is not playing.
 
-        }
+        //}
 
-        private bool PauseSound(string SoundName)
-        {
-            // Do we have sounds?
-            if (Sounds != null)
-            {   // Yes, we have sounds.
+        //private bool PauseSound(string SoundName)
+        //{
+        //    // Do we have sounds?
+        //    if (Sounds != null)
+        //    {   // Yes, we have sounds.
 
-                // Is the sound in the array?
-                if (Sounds.Contains(SoundName))
-                {   // Yes, the sound is in the array.
+        //        // Is the sound in the array?
+        //        if (Sounds.Contains(SoundName))
+        //        {   // Yes, the sound is in the array.
 
-                    string CommandPause = $"pause {SoundName} notify";
+        //            string CommandPause = $"pause {SoundName} notify";
 
-                    StringBuilder ReturnString = new(128);
+        //            StringBuilder ReturnString = new(128);
 
-                    if (mciSendStringW(CommandPause, ReturnString, 0, Handle) == 0)
-                    {
-                        return true; // The sound is paused.
+        //            if (mciSendStringW(CommandPause, ReturnString, 0, Handle) == 0)
+        //            {
+        //                return true; // The sound is paused.
 
-                    }
+        //            }
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return false; // The sound is not paused.
+        //    return false; // The sound is not paused.
 
-        }
+        //}
 
-        private bool IsPlaying(string SoundName)
-        {
-            return GetStatus(SoundName, "mode") == "playing";
+        //private bool IsPlaying(string SoundName)
+        //{
+        //    return GetStatus(SoundName, "mode") == "playing";
 
-        }
+        //}
 
-        private void AddOverlapping(string SoundName, string FilePath)
-        {
-            foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
-            {
-                AddSound(SoundName + suffix, FilePath);
+        //private void AddOverlapping(string SoundName, string FilePath)
+        //{
+        //    foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
+        //    {
+        //        AddSound(SoundName + suffix, FilePath);
 
-            }
+        //    }
 
-        }
+        //}
 
-        private void PlayOverlapping(string SoundName)
-        {
-            foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
-            {
-                if (!IsPlaying(SoundName + suffix))
-                {
-                    PlaySound(SoundName + suffix);
+        //private void PlayOverlapping(string SoundName)
+        //{
+        //    foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
+        //    {
+        //        if (!IsPlaying(SoundName + suffix))
+        //        {
+        //            PlaySound(SoundName + suffix);
 
-                    break;
+        //            break;
 
-                }
+        //        }
 
-            }
+        //    }
 
-        }
+        //}
 
-        private void SetVolumeOverlapping(string SoundName, int Level)
-        {
-            foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
-            {
-                SetVolume(SoundName + suffix, Level);
+        //private void SetVolumeOverlapping(string SoundName, int Level)
+        //{
+        //    foreach (var suffix in new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" })
+        //    {
+        //        SetVolume(SoundName + suffix, Level);
 
-            }
+        //    }
 
-        }
+        //}
 
-        private string GetStatus(string SoundName, string StatusType)
-        {
-            if (Sounds != null)
-            {
-                if (Sounds.Contains(SoundName))
-                {
-                    string CommandStatus = $"status {SoundName} {StatusType}";
+        //private string GetStatus(string SoundName, string StatusType)
+        //{
+        //    if (Sounds != null)
+        //    {
+        //        if (Sounds.Contains(SoundName))
+        //        {
+        //            string CommandStatus = $"status {SoundName} {StatusType}";
 
-                    StringBuilder StatusReturn = new(128);
+        //            StringBuilder StatusReturn = new(128);
 
-                    mciSendStringW(CommandStatus, StatusReturn, 128, IntPtr.Zero);
+        //            mciSendStringW(CommandStatus, StatusReturn, 128, IntPtr.Zero);
 
-                    return StatusReturn.ToString().Trim().ToLower();
+        //            return StatusReturn.ToString().Trim().ToLower();
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return string.Empty;
+        //    return string.Empty;
 
-        }
+        //}
 
-        private void CloseSounds()
-        {
-            if (Sounds != null)
-            {
-                foreach (var Sound in Sounds)
-                {
-                    string CommandClose = $"close {Sound}";
+        //private void CloseSounds()
+        //{
+        //    if (Sounds != null)
+        //    {
+        //        foreach (var Sound in Sounds)
+        //        {
+        //            string CommandClose = $"close {Sound}";
 
-                    StringBuilder ReturnString = new(128);
+        //            StringBuilder ReturnString = new(128);
 
-                    mciSendStringW(CommandClose, ReturnString, 0, IntPtr.Zero);
+        //            mciSendStringW(CommandClose, ReturnString, 0, IntPtr.Zero);
 
-                }
+        //        }
 
-            }
+        //    }
 
-        }
+        //}
 
         private void CreateSoundFileFromResource()
         {
