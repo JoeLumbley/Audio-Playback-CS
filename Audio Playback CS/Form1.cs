@@ -25,22 +25,9 @@
 
 // Level music by Joseph Lumbley Jr.
 
-//using System.Diagnostics;
-//using System.Runtime.InteropServices;
-//using System.Text;
-
-
-
-
-
-
-
-using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Diagnostics;
-using System.IO;
-
 
 namespace Audio_Playback_CS
 {
@@ -52,20 +39,21 @@ namespace Audio_Playback_CS
                                                  [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszReturnString,
                                                  uint cchReturn, IntPtr hwndCallback);
 
+
         private string[]? Sounds;
 
         public bool AddSound(string SoundName, string FilePath)
         {
             // Do we have a name and does the file exist?
             if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
-            {
-                // Yes, we have a name and the file exists.
+            {   // Yes, we have a name and the file exists.
+
                 string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
 
                 // Do we have sounds?
                 if (Sounds == null)
-                {
-                    // No we do not have sounds.
+                {   // No we do not have sounds.
+
                     // Did the sound file open?
                     if (SendMciCommand(CommandOpen, IntPtr.Zero))
                     {
