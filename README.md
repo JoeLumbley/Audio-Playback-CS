@@ -3,7 +3,11 @@
 Audio Playback C# is a powerful and versatile tool for managing audio playback using the Windows Multimedia API.
 This application provides a comprehensive set of features for playing audio, making it an essential resource for developers and enthusiasts alike.
 
-![001](https://github.com/JoeLumbley/Audio-Playback/assets/77564255/b6163547-41d4-477d-bd9b-75b84b8f2209)
+
+
+![001](https://github.com/user-attachments/assets/3ade36e1-9ed7-46c0-93f2-d82b9c311d5d)
+
+
 
 Key Features:
 - Simultaneous Playback: Harness the full potential of the Windows Multimedia API to play multiple audio files simultaneously, allowing for rich and immersive audio experiences.
