@@ -366,44 +366,6 @@ namespace Audio_Playback_CS
 
         }
 
-
-        //private void CreateSoundFileFromResource()
-        //{
-        //    string FilePath = Path.Combine(Application.StartupPath, "level.mp3");
-
-        //    if (!File.Exists(FilePath))
-        //    {
-        //        File.WriteAllBytes(FilePath, Audio_Playback_CS.Resource1.level);
-
-        //    }
-
-        //    FilePath = Path.Combine(Application.StartupPath, "CashCollected.mp3");
-
-        //    if (!File.Exists(FilePath))
-        //    {
-        //        File.WriteAllBytes(FilePath, Audio_Playback_CS.Resource1.CashCollected);
-
-        //    }
-
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public Form1()
         {
             InitializeComponent();
@@ -414,48 +376,48 @@ namespace Audio_Playback_CS
 }
 
 
-//'Windows Multimedia
+// Windows Multimedia
 
-//'Windows Multimedia refers to the collection of technologies and APIs (Application Programming Interfaces)
-//'provided by Microsoft Windows for handling multimedia tasks on the Windows operating system.
+// Windows Multimedia refers to the collection of technologies and APIs (Application Programming Interfaces)
+// provided by Microsoft Windows for handling multimedia tasks on the Windows operating system.
 
-//'It includes components for playing audio and video, recording sound, working with MIDI devices, managing
-//'multimedia resources, and controlling multimedia hardware.
+// It includes components for playing audio and video, recording sound, working with MIDI devices, managing
+// multimedia resources, and controlling multimedia hardware.
 
-//'Windows Multimedia APIs like DirectShow, DirectX, Media Control Interface, and others enable developers
-//'to create multimedia applications that can interact with various multimedia devices and perform tasks
-//'related to multimedia playback, recording, and processing.
+// Windows Multimedia APIs like DirectShow, DirectX, Media Control Interface, and others enable developers
+// to create multimedia applications that can interact with various multimedia devices and perform tasks
+// related to multimedia playback, recording, and processing.
 
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/windows-multimedia-start-page
-
-
-//'Media Control Interface
-
-//'The Media Control Interface (MCI) is a high-level programming interface provided by Microsoft Windows
-//'for controlling multimedia devices such as CD-ROM drives, audio and video devices, and other multimedia
-//'hardware.
-
-//'MCI provides a standard way for applications to interact with multimedia devices without needing to know
-//'the specific details of each device's hardware or communication protocols.
-
-//'By using MCI commands and functions, applications can play, record, pause, stop, and otherwise control
-//'multimedia playback and recording devices in a consistent and platform-independent manner.
-
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/mci
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/windows-multimedia-start-page
 
 
-//'mciSendStringW Function
+// Media Control Interface
 
-//'mciSendStringW is a function that is used to send a command string to an MCI device.
+// The Media Control Interface (MCI) is a high-level programming interface provided by Microsoft Windows
+// for controlling multimedia devices such as CD-ROM drives, audio and video devices, and other multimedia
+// hardware.
 
-//'The "W" at the end of the function name indicates that it is the wide-character version of the function,
-//'which means it accepts Unicode strings.
+// MCI provides a standard way for applications to interact with multimedia devices without needing to know
+// the specific details of each device's hardware or communication protocols.
 
-//'This function allows applications to control multimedia devices and perform operations such as playing
-//'audio or video, recording sound, and managing multimedia resources by sending commands in the form of
-//'strings to MCI devices.
+// By using MCI commands and functions, applications can play, record, pause, stop, and otherwise control
+// multimedia playback and recording devices in a consistent and platform-independent manner.
 
-//'https://learn.microsoft.com/en-us/previous-versions//dd757161(v=vs.85)
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/mci
+
+
+// mciSendStringW Function
+
+// mciSendStringW is a function that is used to send a command string to an MCI device.
+
+// The "W" at the end of the function name indicates that it is the wide-character version of the function,
+// which means it accepts Unicode strings.
+
+// This function allows applications to control multimedia devices and perform operations such as playing
+// audio or video, recording sound, and managing multimedia resources by sending commands in the form of
+// strings to MCI devices.
+
+// https://learn.microsoft.com/en-us/previous-versions//dd757161(v=vs.85)
 
 
 //'open Command
