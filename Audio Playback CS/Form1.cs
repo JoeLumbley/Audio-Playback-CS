@@ -420,7 +420,7 @@ namespace Audio_Playback_CS
 // https://learn.microsoft.com/en-us/previous-versions//dd757161(v=vs.85)
 
 
-//'open Command
+// open Command
 
 //'The "open" command is used in the Windows Multimedia API to open or initialize an MCI device for playback,
 //'recording or other multimedia operations.
