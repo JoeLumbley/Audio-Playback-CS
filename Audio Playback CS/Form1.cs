@@ -422,106 +422,106 @@ namespace Audio_Playback_CS
 
 // open Command
 
-//'The "open" command is used in the Windows Multimedia API to open or initialize an MCI device for playback,
-//'recording or other multimedia operations.
+// The "open" command is used in the Windows Multimedia API to open or initialize an MCI device for playback,
+// recording or other multimedia operations.
 
-//'By sending an MCI command string with the "open" command using mciSendStringW, applications can specify
-//'the type of multimedia device to open (such as a CD-ROM drive, sound card, or video device), the file or
-//'resource to be accessed and any additional parameters required for the operation.
+// By sending an MCI command string with the "open" command using mciSendStringW, applications can specify
+// the type of multimedia device to open (such as a CD-ROM drive, sound card, or video device), the file or
+// resource to be accessed and any additional parameters required for the operation.
 
-//'This command is essential for preparing a multimedia device for use before performing playback, recording,
-//'or other actions on it.
+// This command is essential for preparing a multimedia device for use before performing playback, recording,
+// or other actions on it.
 
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/open
-
-
-//'setaudio Command
-
-//'The "setaudio" command is used to set the audio parameters for a multimedia device.
-
-//'When sending an MCI command string with the "setaudio" command using the mciSendStringW function,
-//'applications can adjust settings such as volume, balance, speed, and other audio-related properties of the
-//'specified multimedia device.
-
-//'This command allows developers to control and customize the audio playback characteristics of the device
-//'to meet specific requirements or user preferences.
-
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/setaudio
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/open
 
 
-//'seek Command
+// setaudio Command
 
-//'The "seek" command is used to move the current position of playback or recording to a specified location
-//'within a multimedia resource.
+// The "setaudio" command is used to set the audio parameters for a multimedia device.
 
-//'When sending an MCI command string with the "seek" command using the mciSendStringW function,
-//'applications can specify the position or time where playback should start or resume within the multimedia
-//'content.
+// When sending an MCI command string with the "setaudio" command using the mciSendStringW function,
+// applications can adjust settings such as volume, balance, speed, and other audio-related properties of the
+// specified multimedia device.
 
-//'This command allows developers to navigate to a specific point in audio or video playback, facilitating
-//'precise control over multimedia playback operations.
+// This command allows developers to control and customize the audio playback characteristics of the device
+// to meet specific requirements or user preferences.
 
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/seek
-
-
-//'play Command
-
-//'The "play" command is used to start or resume playback of a multimedia resource.
-
-//'When sending an MCI command string with the "play" command using the mciSendStringW function, applications
-//'can instruct the multimedia device to begin playing the specified audio or video content from the current
-//'position.
-
-//'This command is essential for initiating playback of multimedia files, allowing developers to control the
-//'start and continuation of audio or video playback operations using MCI commands.
-
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/play
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/setaudio
 
 
-//'status Command
+// seek Command
 
-//'The "status" command is used to retrieve information about the current status of a multimedia device or
-//'resource.
+// The "seek" command is used to move the current position of playback or recording to a specified location
+// within a multimedia resource.
 
-//'When sending an MCI command string with the "status" command using the mciSendStringW function,
-//'applications can query various properties and states of the specified multimedia device, such as playback
-//'position, volume level, mode (playing, paused, stopped), and other relevant information.
+// When sending an MCI command string with the "seek" command using the mciSendStringW function,
+// applications can specify the position or time where playback should start or resume within the multimedia
+// content.
 
-//'This command allows developers to monitor and obtain real-time feedback on the status of multimedia
-//'playback or recording operations, enabling them to make informed decisions based on the device's current
-//'state.
+// This command allows developers to navigate to a specific point in audio or video playback, facilitating
+// precise control over multimedia playback operations.
 
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/status
-
-
-//'close Command
-
-//'The "close" command is used to close or release a multimedia device that was previously opened for
-//'playback, recording, or other operations.
-
-//'When sending an MCI command string with the "close" command using the mciSendStringW function,
-//'applications can instruct the multimedia device to release any resources associated with the device and
-//'prepare it for shutdown.
-
-//'This command is essential for properly closing and cleaning up after using a multimedia device, ensuring
-//'that resources are properly released and the device is no longer in use by the application.
-
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/close
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/seek
 
 
-//'pause Command
+// play Command
 
-//'The pause command is used to temporarily halt the playback of media content, allowing the user to resume
-//'playback from the paused position at a later time.
+// The "play" command is used to start or resume playback of a multimedia resource.
 
-//'https://learn.microsoft.com/en-us/windows/win32/multimedia/pause
+// When sending an MCI command string with the "play" command using the mciSendStringW function, applications
+// can instruct the multimedia device to begin playing the specified audio or video content from the current
+// position.
+
+// This command is essential for initiating playback of multimedia files, allowing developers to control the
+// start and continuation of audio or video playback operations using MCI commands.
+
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/play
+
+
+// status Command
+
+// The "status" command is used to retrieve information about the current status of a multimedia device or
+// resource.
+
+// When sending an MCI command string with the "status" command using the mciSendStringW function,
+// applications can query various properties and states of the specified multimedia device, such as playback
+// position, volume level, mode (playing, paused, stopped), and other relevant information.
+
+// This command allows developers to monitor and obtain real-time feedback on the status of multimedia
+// playback or recording operations, enabling them to make informed decisions based on the device's current
+// state.
+
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/status
+
+
+// close Command
+
+// The "close" command is used to close or release a multimedia device that was previously opened for
+// playback, recording, or other operations.
+
+// When sending an MCI command string with the "close" command using the mciSendStringW function,
+// applications can instruct the multimedia device to release any resources associated with the device and
+// prepare it for shutdown.
+
+// This command is essential for properly closing and cleaning up after using a multimedia device, ensuring
+// that resources are properly released and the device is no longer in use by the application.
+
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/close
+
+
+// pause Command
+
+// The pause command is used to temporarily halt the playback of media content, allowing the user to resume
+// playback from the paused position at a later time.
+
+// https://learn.microsoft.com/en-us/windows/win32/multimedia/pause
 
 
 
-//'Monica is our an AI assistant.
-//'https://monica.im/
+// Monica is our an AI assistant.
+// https://monica.im/
 
 
-//'I also make coding videos on my YouTube channel.
-//'https://www.youtube.com/@codewithjoe6074
+// I also make coding videos on my YouTube channel.
+// https://www.youtube.com/@codewithjoe6074
 
