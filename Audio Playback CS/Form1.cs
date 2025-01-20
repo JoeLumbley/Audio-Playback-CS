@@ -224,7 +224,7 @@ namespace Audio_Playback_CS
             }
             catch (Exception ex)
             {
-                Debug.Print($"Error sending MCI command: {ex.Message}");
+                Debug.Print($"Error sending MCI command: {command} | {ex.Message}");
 
                 return false;
 
