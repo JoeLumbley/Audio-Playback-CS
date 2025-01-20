@@ -252,7 +252,7 @@ namespace Audio_Playback_CS
             }
             catch (Exception ex)
             {
-                Debug.Print($"Error getting status: {ex.Message}");
+                Debug.Print($"Error getting status: {SoundName} | {ex.Message}");
 
             }
 
