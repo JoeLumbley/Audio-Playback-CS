@@ -35,7 +35,7 @@ namespace Audio_Playback_CS
     public struct AudioPlayer
     {
         [DllImport("winmm.dll", EntryPoint = "mciSendStringW")]
-        private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] string lpszCommand,
+        private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPWStr)] string lpszCommand,
                                                  [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszReturnString,
                                                  uint cchReturn, IntPtr hwndCallback);
 
