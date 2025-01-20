@@ -148,7 +148,7 @@ namespace Audio_Playback_CS
 
             }
 
-            Debug.Print($"The sound is not playing {SoundName}");
+            Debug.Print($"{SoundName} is not playing");
 
             return false; // The sound is not playing.
 
