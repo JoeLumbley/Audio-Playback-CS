@@ -133,7 +133,7 @@ namespace Audio_Playback_CS
 
         }
 
-        private bool PlaySound(string SoundName)
+        public bool PlaySound(string SoundName)
         {
             // Do we have sounds and is the sound in the array?
             if (Sounds != null && Sounds.Contains(SoundName))
