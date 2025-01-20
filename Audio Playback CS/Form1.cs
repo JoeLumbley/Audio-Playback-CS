@@ -88,7 +88,7 @@ namespace Audio_Playback_CS
 
             }
 
-            Debug.Print($"The sound was not added {SoundName}");
+            Debug.Print($"{SoundName} not added to sounds.");
 
             return false; // The sound was not added.
 
@@ -106,7 +106,7 @@ namespace Audio_Playback_CS
 
             }
 
-            Debug.Print($"The volume was not set {SoundName}");
+            Debug.Print($"{SoundName} volume not set.");
 
             return false; // The volume was not set.
 
@@ -127,7 +127,7 @@ namespace Audio_Playback_CS
 
             }
 
-            Debug.Print($"The sound is not looping {SoundName}");
+            Debug.Print($"{SoundName} not looping.");
 
             return false; // The sound is not looping.
 
@@ -148,7 +148,7 @@ namespace Audio_Playback_CS
 
             }
 
-            Debug.Print($"{SoundName} is not playing");
+            Debug.Print($"{SoundName} not playing.");
 
             return false; // The sound is not playing.
 
@@ -166,7 +166,7 @@ namespace Audio_Playback_CS
 
             }
 
-            Debug.Print($"The sound is not paused {SoundName}");
+            Debug.Print($"{SoundName} not paused.");
 
             return false; // The sound is not paused.
 
@@ -224,7 +224,7 @@ namespace Audio_Playback_CS
             }
             catch (Exception ex)
             {
-                Debug.Print($"Error: {ex.Message}");
+                Debug.Print($"Error sending MCI command: {ex.Message}");
 
                 return false;
 
