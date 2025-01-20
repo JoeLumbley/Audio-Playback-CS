@@ -78,7 +78,7 @@ namespace Audio_Playback_CS
                         // Add the sound to the Sounds array.
                         Array.Resize(ref Sounds, Sounds.Length + 1);
 
-                        Sounds[Sounds.Length - 1] = SoundName;
+                        Sounds[^1] = SoundName;
 
                         return true; // The sound was added.
 
@@ -216,7 +216,7 @@ namespace Audio_Playback_CS
 
         private bool SendMciCommand(string command, IntPtr hwndCallback)
         {
-            StringBuilder ReturnString = new StringBuilder(128);
+            StringBuilder ReturnString = new(128);
 
             try
             {
@@ -242,7 +242,7 @@ namespace Audio_Playback_CS
 
                     string CommandStatus = $"status {SoundName} {StatusType}";
 
-                    StringBuilder StatusReturn = new StringBuilder(128);
+                    StringBuilder StatusReturn = new(128);
 
                     mciSendStringW(CommandStatus, StatusReturn, 128, IntPtr.Zero);
 
