@@ -78,7 +78,7 @@ namespace Audio_Playback_CS
                         // Add the sound to the Sounds array.
                         Array.Resize(ref Sounds, Sounds.Length + 1);
 
-                        Sounds[^1] = SoundName;
+                        Sounds[Sounds.Length - 1] = SoundName;
 
                         return true; // The sound was added.
 
