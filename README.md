@@ -455,17 +455,29 @@ Feel free to experiment with the code and modify it to enhance your learning exp
 ---
 
 ## Index
+
  [Namespaces and Struct Definition](#namespaces-and-struct-definition)
+ 
  [Adding Sounds](#adding-sounds)
+ 
  [Setting Volume](#setting-volume)
+ 
  [Looping Sounds](#looping-sounds)
+ 
  [Playing Sounds](#playing-sounds)
+ 
  [Pausing Sounds](#pausing-sounds)
+ 
  [Managing Overlapping Sounds](#managing-overlapping-sounds)
+ 
  [Sending MCI Commands](#sending-mci-commands)
+ 
  [Getting Sound Status](#getting-sound-status)
+ 
  [Closing Sounds](#closing-sounds)
+ 
  [Form Class and Event Handlers](#form-class-and-event-handlers)
+ 
  [Creating Sound Files](#creating-sound-files)
 
 
