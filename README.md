@@ -480,48 +480,12 @@ private void CreateFileFromResource(string filePath, byte[] resource)
   - Writes byte arrays from resources to files on disk.
   - Catches exceptions and logs errors if file creation fails.
 
----
 
-
-This code provides a comprehensive example of how to create an audio playback application in C#. We covered everything from adding sounds to managing their playback and volume. By understanding each part of this code, you can build a solid foundation for working with audio in your applications.
-
-Feel free to experiment with the code and modify it to enhance your learning experience!
+ [Index](#index)
 
 
 ---
 
-## Index
-
-
-
-
-
- [Namespaces and Struct Definition](#namespaces-and-struct-definition)
- 
- [Adding Sounds](#adding-sounds)
- 
- [Setting Volume](#setting-volume)
- 
- [Looping Sounds](#looping-sounds)
- 
- [Playing Sounds](#playing-sounds)
- 
- [Pausing Sounds](#pausing-sounds)
- 
- [Managing Overlapping Sounds](#managing-overlapping-sounds)
- 
- [Sending MCI Commands](#sending-mci-commands)
- 
- [Getting Sound Status](#getting-sound-status)
- 
- [Closing Sounds](#closing-sounds)
- 
- [Form Class and Event Handlers](#form-class-and-event-handlers)
- 
- [Creating Sound Files](#creating-sound-files)
-
-
----
 
 
 
@@ -590,8 +554,44 @@ By following these steps, you can easily add any existing MP3 file to your resou
 
 
 
+---
+
+## Index
 
 
 
 
+
+ [Namespaces and Struct Definition](#namespaces-and-struct-definition)
+ 
+ [Adding Sounds](#adding-sounds)
+ 
+ [Setting Volume](#setting-volume)
+ 
+ [Looping Sounds](#looping-sounds)
+ 
+ [Playing Sounds](#playing-sounds)
+ 
+ [Pausing Sounds](#pausing-sounds)
+ 
+ [Managing Overlapping Sounds](#managing-overlapping-sounds)
+ 
+ [Sending MCI Commands](#sending-mci-commands)
+ 
+ [Getting Sound Status](#getting-sound-status)
+ 
+ [Closing Sounds](#closing-sounds)
+ 
+ [Form Class and Event Handlers](#form-class-and-event-handlers)
+ 
+ [Creating Sound Files](#creating-sound-files)
+
+
+
+---
+
+
+This code provides a comprehensive example of how to create an audio playback application in C#. We covered everything from adding sounds to managing their playback and volume. By understanding each part of this code, you can build a solid foundation for working with audio in your applications.
+
+Feel free to experiment with the code and modify it to enhance your learning experience!
 
