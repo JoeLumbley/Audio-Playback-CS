@@ -284,6 +284,8 @@ namespace Audio_Playback_CS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CenterToScreen();
+
             Text = "Audio Playback C# - Code with Joe";
 
             CreateSoundFiles();
