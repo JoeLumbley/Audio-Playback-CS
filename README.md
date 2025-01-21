@@ -5,8 +5,8 @@ This application provides a comprehensive set of features for playing audio, mak
 
 
 
-![001](https://github.com/user-attachments/assets/3ade36e1-9ed7-46c0-93f2-d82b9c311d5d)
 
+![002](https://github.com/user-attachments/assets/4e243026-9f35-487b-ad6a-0f8d455c858b)
 
 
 Key Features:
@@ -35,7 +35,10 @@ Clone the repository now and embark on a transformative audio playback experienc
 
 In this walkthrough, we will break down the code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
 
+ [Index](#index)
+
 ---
+
 
 ## Namespaces and Struct Definition
 
@@ -65,7 +68,10 @@ private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] strin
   - `cchReturn`: The size of the return string.
   - `hwndCallback`: A handle to a callback window (not used here).
 
+ [Index](#index)
+
 ---
+
 
 ## Adding Sounds
 
@@ -111,7 +117,10 @@ public bool AddSound(string SoundName, string FilePath)
   - If sounds already exist, it checks if the sound is not already in the array before adding it.
   - Returns `true` if the sound was successfully added; otherwise, it logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
+
 
 ## Setting Volume
 
@@ -135,7 +144,10 @@ public bool SetVolume(string SoundName, int Level)
   - Sends the command using `SendMciCommand` and returns the result.
   - Logs a message and returns `false` if the conditions are not met.
 
+ [Index](#index)
+
 ---
+
 
 ## Looping Sounds
 
@@ -160,7 +172,10 @@ public bool LoopSound(string SoundName)
   - Constructs commands to seek to the start of the sound and play it in repeat mode.
   - Sends both commands and returns `true` if successful; otherwise, logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
+
 
 ## Playing Sounds
 
@@ -185,7 +200,10 @@ private bool PlaySound(string SoundName)
   - Uses `notify` to allow the program to receive notification when the sound finishes playing.
   - Returns `true` if the commands were successful; otherwise, it logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
+
 
 ## Pausing Sounds
 
@@ -208,7 +226,10 @@ public bool PauseSound(string SoundName)
   - Constructs a command to pause the sound and sends it.
   - Returns `true` if successful; otherwise, logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
+
 
 ## Managing Overlapping Sounds
 
@@ -259,7 +280,10 @@ public void SetVolumeOverlapping(string SoundName, int Level)
 - **Method `SetVolumeOverlapping`**:
   - Sets the volume for all suffixed sounds using the `SetVolume` method.
 
+ [Index](#index)
+
 ---
+
 
 ## Sending MCI Commands
 
@@ -284,7 +308,10 @@ private bool SendMciCommand(string command, IntPtr hwndCallback)
   - Sends a command to the MCI and checks for errors.
   - Returns `true` if the command was successful; otherwise, logs the error and returns `false`.
 
+ [Index](#index)
+
 ---
+
 
 ## Getting Sound Status
 
@@ -314,7 +341,10 @@ private string GetStatus(string SoundName, string StatusType)
   - Retrieves the status of a sound (e.g., whether it is playing).
   - Constructs a status command and returns the result as a string.
 
+ [Index](#index)
+
 ---
+
 
 ## Closing Sounds
 
@@ -335,7 +365,10 @@ public void CloseSounds()
 - **Method `CloseSounds`**:
   - Closes all open sounds by sending a close command for each sound in the `Sounds` array.
 
+ [Index](#index)
+
 ---
+
 
 ## Form Class and Event Handlers
 
@@ -405,7 +438,10 @@ private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs 
 ```
 - **Form1_Closing**: Ensures all sounds are closed when the form is closing.
 
+ [Index](#index)
+
 ---
+
 
 ## Creating Sound Files
 
@@ -444,34 +480,119 @@ private void CreateFileFromResource(string filePath, byte[] resource)
   - Writes byte arrays from resources to files on disk.
   - Catches exceptions and logs errors if file creation fails.
 
+
+ [Index](#index)
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Adding Resources
+
+To add an existing MP3 file to the resource file `Resource1`, follow these steps:
+
+ **Open the Resource File**:
+   - In your Visual Studio project, locate the `Resource1.resx` file. This file is in the **"Solution Explorer"** panel of your project.
+
+ **Edit the Resource File**:
+   - Double-click on `Resource1.resx` to open the resource editor.
+
+
+  
+![004](https://github.com/user-attachments/assets/0ee66adf-b0b6-4f38-aea6-13753e3608d9)
+
+
+
+
+ **Add Existing File**:
+   - In the resource editor, click on the **"Green Plus Sign"** to add a new resource.
+   - Select the type **"File"** and then choose **"Add Existing File..."**.
+
+ **Select Your MP3 File**:
+   - Navigate to the location of your MP3 file in the file dialog that appears.
+   - Select the MP3 file you wish to add and click **"Open"**.
+
+
+![003](https://github.com/user-attachments/assets/2c97331f-3adb-4e6f-aafa-78a7de57165c)
+
+
+
+ **Verify the Addition**:
+   - Ensure that your MP3 file appears in the list of resources in the resource editor. It should now be accessible via the `Resource1` class in your code.
+
+ **Accessing the Resource in Code**:
+   - You can access the added MP3 file in your code using the following syntax:
+     ```csharp
+     
+     // Replace 'CashCollected' with the name of your MP3 file
+     CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.CashCollected);
+     
+     ```
+
+ **Save Changes**:
+   - Save the changes to the `Resource1.resx` file.
+
+By following these steps, you can easily add any existing MP3 file to your resources and use it within your Audio Playback application.
+
+
+
+
+
+
+
+
+---
+
+## Index
+
+
+
+
+
+ [Namespaces and Struct Definition](#namespaces-and-struct-definition)
+ 
+ [Adding Sounds](#adding-sounds)
+ 
+ [Setting Volume](#setting-volume)
+ 
+ [Looping Sounds](#looping-sounds)
+ 
+ [Playing Sounds](#playing-sounds)
+ 
+ [Pausing Sounds](#pausing-sounds)
+ 
+ [Managing Overlapping Sounds](#managing-overlapping-sounds)
+ 
+ [Sending MCI Commands](#sending-mci-commands)
+ 
+ [Getting Sound Status](#getting-sound-status)
+ 
+ [Closing Sounds](#closing-sounds)
+ 
+ [Form Class and Event Handlers](#form-class-and-event-handlers)
+ 
+ [Creating Sound Files](#creating-sound-files)
+
+ [Adding Resources](#adding-resources)
+
+
 ---
 
 
 This code provides a comprehensive example of how to create an audio playback application in C#. We covered everything from adding sounds to managing their playback and volume. By understanding each part of this code, you can build a solid foundation for working with audio in your applications.
 
 Feel free to experiment with the code and modify it to enhance your learning experience!
-
-
----
-
-## Table of Contents
-1. [Namespaces and Struct Definition](#namespaces-and-struct-definition)
-2. [Adding Sounds](#adding-sounds)
-3. [Setting Volume](#setting-volume)
-4. [Looping Sounds](#looping-sounds)
-5. [Playing Sounds](#playing-sounds)
-6. [Pausing Sounds](#pausing-sounds)
-7. [Managing Overlapping Sounds](#managing-overlapping-sounds)
-8. [Sending MCI Commands](#sending-mci-commands)
-9. [Getting Sound Status](#getting-sound-status)
-10. [Closing Sounds](#closing-sounds)
-11. [Form Class and Event Handlers](#form-class-and-event-handlers)
-12. [Creating Sound Files](#creating-sound-files)
-
-
-
-
-
-
-
 
