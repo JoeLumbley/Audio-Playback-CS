@@ -572,7 +572,10 @@ To add an existing MP3 file to the resource file `Resource1`, follow these steps
  **Accessing the Resource in Code**:
    - You can access the added MP3 file in your code using the following syntax:
      ```csharp
-     byte[] audioData = Resource1.yourMp3FileName; // Replace 'yourMp3FileName' with the name of your MP3 file
+     
+     // Replace 'CashCollected' with the name of your MP3 file
+     CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.CashCollected);
+     
      ```
 
  **Save Changes**:
