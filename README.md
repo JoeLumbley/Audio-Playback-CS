@@ -37,6 +37,8 @@ In this walkthrough, we will break down the code that implements an `AudioPlayer
 
 ---
 
+ [Index](#index)
+
 ## Namespaces and Struct Definition
 
 ```csharp
@@ -66,6 +68,8 @@ private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] strin
   - `hwndCallback`: A handle to a callback window (not used here).
 
 ---
+
+ [Index](#index)
 
 ## Adding Sounds
 
@@ -113,6 +117,8 @@ public bool AddSound(string SoundName, string FilePath)
 
 ---
 
+ [Index](#index)
+
 ## Setting Volume
 
 ```csharp
@@ -136,6 +142,8 @@ public bool SetVolume(string SoundName, int Level)
   - Logs a message and returns `false` if the conditions are not met.
 
 ---
+
+ [Index](#index)
 
 ## Looping Sounds
 
@@ -162,6 +170,8 @@ public bool LoopSound(string SoundName)
 
 ---
 
+ [Index](#index)
+
 ## Playing Sounds
 
 ```csharp
@@ -187,6 +197,8 @@ private bool PlaySound(string SoundName)
 
 ---
 
+ [Index](#index)
+
 ## Pausing Sounds
 
 ```csharp
@@ -209,6 +221,8 @@ public bool PauseSound(string SoundName)
   - Returns `true` if successful; otherwise, logs a message and returns `false`.
 
 ---
+
+ [Index](#index)
 
 ## Managing Overlapping Sounds
 
@@ -261,6 +275,8 @@ public void SetVolumeOverlapping(string SoundName, int Level)
 
 ---
 
+ [Index](#index)
+
 ## Sending MCI Commands
 
 ```csharp
@@ -285,6 +301,8 @@ private bool SendMciCommand(string command, IntPtr hwndCallback)
   - Returns `true` if the command was successful; otherwise, logs the error and returns `false`.
 
 ---
+
+ [Index](#index)
 
 ## Getting Sound Status
 
@@ -316,6 +334,8 @@ private string GetStatus(string SoundName, string StatusType)
 
 ---
 
+ [Index](#index)
+
 ## Closing Sounds
 
 ```csharp
@@ -336,6 +356,8 @@ public void CloseSounds()
   - Closes all open sounds by sending a close command for each sound in the `Sounds` array.
 
 ---
+
+ [Index](#index)
 
 ## Form Class and Event Handlers
 
@@ -407,6 +429,8 @@ private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs 
 
 ---
 
+ [Index](#index)
+
 ## Creating Sound Files
 
 ```csharp
@@ -455,6 +479,10 @@ Feel free to experiment with the code and modify it to enhance your learning exp
 ---
 
 ## Index
+
+
+
+
 
  [Namespaces and Struct Definition](#namespaces-and-struct-definition)
  
