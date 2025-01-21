@@ -5,8 +5,8 @@ This application provides a comprehensive set of features for playing audio, mak
 
 
 
-![001](https://github.com/user-attachments/assets/3ade36e1-9ed7-46c0-93f2-d82b9c311d5d)
 
+![002](https://github.com/user-attachments/assets/4e243026-9f35-487b-ad6a-0f8d455c858b)
 
 
 Key Features:
