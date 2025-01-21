@@ -586,6 +586,7 @@ By following these steps, you can easily add any existing MP3 file to your resou
  
  [Creating Sound Files](#creating-sound-files)
 
+ [Adding Resources](#adding-resources)
 
 
 ---
