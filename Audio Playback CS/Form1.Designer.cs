@@ -36,9 +36,9 @@
             // 
             button1.Location = new Point(12, 12);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(234, 34);
             button1.TabIndex = 0;
-            button1.Text = "Play Cash";
+            button1.Text = "Play Overlapping";
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
             // 
@@ -46,7 +46,7 @@
             // 
             button2.Location = new Point(12, 52);
             button2.Name = "button2";
-            button2.Size = new Size(112, 34);
+            button2.Size = new Size(234, 34);
             button2.TabIndex = 1;
             button2.Text = "Pause Loop";
             button2.UseVisualStyleBackColor = true;
