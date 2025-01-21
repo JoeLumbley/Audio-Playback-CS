@@ -35,9 +35,10 @@ Clone the repository now and embark on a transformative audio playback experienc
 
 In this walkthrough, we will break down the code that implements an `AudioPlayer` struct and a `Form1` class to manage audio playback.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Namespaces and Struct Definition
 
@@ -67,9 +68,10 @@ private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] strin
   - `cchReturn`: The size of the return string.
   - `hwndCallback`: A handle to a callback window (not used here).
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Adding Sounds
 
@@ -115,9 +117,10 @@ public bool AddSound(string SoundName, string FilePath)
   - If sounds already exist, it checks if the sound is not already in the array before adding it.
   - Returns `true` if the sound was successfully added; otherwise, it logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Setting Volume
 
@@ -141,9 +144,10 @@ public bool SetVolume(string SoundName, int Level)
   - Sends the command using `SendMciCommand` and returns the result.
   - Logs a message and returns `false` if the conditions are not met.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Looping Sounds
 
@@ -168,9 +172,10 @@ public bool LoopSound(string SoundName)
   - Constructs commands to seek to the start of the sound and play it in repeat mode.
   - Sends both commands and returns `true` if successful; otherwise, logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Playing Sounds
 
@@ -195,9 +200,10 @@ private bool PlaySound(string SoundName)
   - Uses `notify` to allow the program to receive notification when the sound finishes playing.
   - Returns `true` if the commands were successful; otherwise, it logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Pausing Sounds
 
@@ -220,9 +226,10 @@ public bool PauseSound(string SoundName)
   - Constructs a command to pause the sound and sends it.
   - Returns `true` if successful; otherwise, logs a message and returns `false`.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Managing Overlapping Sounds
 
@@ -273,9 +280,10 @@ public void SetVolumeOverlapping(string SoundName, int Level)
 - **Method `SetVolumeOverlapping`**:
   - Sets the volume for all suffixed sounds using the `SetVolume` method.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Sending MCI Commands
 
@@ -300,9 +308,10 @@ private bool SendMciCommand(string command, IntPtr hwndCallback)
   - Sends a command to the MCI and checks for errors.
   - Returns `true` if the command was successful; otherwise, logs the error and returns `false`.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Getting Sound Status
 
@@ -332,9 +341,10 @@ private string GetStatus(string SoundName, string StatusType)
   - Retrieves the status of a sound (e.g., whether it is playing).
   - Constructs a status command and returns the result as a string.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Closing Sounds
 
@@ -355,9 +365,10 @@ public void CloseSounds()
 - **Method `CloseSounds`**:
   - Closes all open sounds by sending a close command for each sound in the `Sounds` array.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Form Class and Event Handlers
 
@@ -427,9 +438,10 @@ private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs 
 ```
 - **Form1_Closing**: Ensures all sounds are closed when the form is closing.
 
+ [Index](#index)
+
 ---
 
- [Index](#index)
 
 ## Creating Sound Files
 
