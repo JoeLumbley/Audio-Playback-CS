@@ -342,11 +342,11 @@ namespace Audio_Playback_CS
         {
             string filePath = Path.Combine(Application.StartupPath, "level.mp3");
 
-            CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.level);
+            CreateFileFromResource(filePath, Resource1.level);
 
             filePath = Path.Combine(Application.StartupPath, "CashCollected.mp3");
 
-            CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.CashCollected);
+            CreateFileFromResource(filePath, Resource1.CashCollected);
 
         }
 
