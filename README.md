@@ -539,6 +539,10 @@ To add a resource file to your Visual Studio project, follow these steps:
    - You can access the added resource in your code using the following syntax:
      ```vb
      CreateFileFromResource(filePath, YourProjectNamespace.Resource1.YourResourceName)
+     
+     // Example
+     CreateFileFromResource(filePath, Resource1.CashCollected);
+
      ```
 
 6. **Save Changes**:
