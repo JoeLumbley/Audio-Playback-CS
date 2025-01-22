@@ -44,18 +44,43 @@ In this walkthrough, we will break down the code that implements an `AudioPlayer
 
 ---
 
-
 ## Namespaces
+
+### Using Directives
 
 ```csharp
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Diagnostics;
 
-namespace Audio_Playback_CS
+
 ```
 
-- **Namespaces**: These are used to organize code and avoid naming conflicts. Here, we are importing `System.Runtime.InteropServices`, `System.Text`, and `System.Diagnostics`.
+In this example, we are importing:
+- `System.Runtime.InteropServices`
+- `System.Text`
+- `System.Diagnostics`
+This line imports the `System.Diagnostics` namespace, which provides classes for debugging and tracing. It allows us to print debug messages to the console.
+
+### Namespace Declaration
+
+```csharp
+
+namespace Audio_Playback_CS
+
+```
+- Here, we define a namespace called `Audio_Playback_CS`. Namespaces are used to organize code and avoid naming conflicts with other parts of the program.
+
+
+
+
+
+
+
+
+
+
+
 
 ## AudioPlayer Structure
 
