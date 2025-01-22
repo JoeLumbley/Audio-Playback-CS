@@ -69,7 +69,7 @@ public struct AudioPlayer
 
 
 
-### DllImport Attribute
+### DLL Import
 ```csharp
 [DllImport("winmm.dll", EntryPoint = "mciSendStringW")]
 private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] string lpszCommand,
