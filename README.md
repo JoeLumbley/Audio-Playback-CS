@@ -146,89 +146,43 @@ if (SendMciCommand(CommandOpen, IntPtr.Zero))
 
 Sends the command to open the sound file.
 
+```csharp
 
+Sounds = new string[1];
+Sounds[0] = SoundName;
+return true;
 
-
-
-
-
-
-
-
-```vb.net
-ReDim Sounds(0)
-Sounds(0) = SoundName
-Return True
 ```
+
 Initializes the `Sounds` array with the new sound and returns `True`.
 
+```csharp
 
+else if (!Sounds.Contains(SoundName))
 
-
-
-
-
-```vb.net
-ElseIf Not Sounds.Contains(SoundName) Then
 ```
+
 Checks if the sound is not already in the array.
 
-```vb.net
-Array.Resize(Sounds, Sounds.Length + 1)
-Sounds(Sounds.Length - 1) = SoundName
-Return True
+```csharp
+
+Array.Resize(ref Sounds, Sounds.Length + 1);
+Sounds[Sounds.Length - 1] = SoundName;
+return true;
+
 ```
+
 Adds the new sound to the `Sounds` array and returns `True`.
 
-```vb.net
-Debug.Print($"{SoundName} not added to sounds.")
-Return False
+```csharp
+
+Debug.Print($"The sound was not added {SoundName}");
+return false;
+
 ```
+
 Prints a debug message and returns `False` if the sound could not be added.
 
-
-
-```csharp
-private string[]? Sounds;
-
-public bool AddSound(string SoundName, string FilePath)
-{
-    if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
-    {
-        string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
-
-        if (Sounds == null)
-        {
-            if (SendMciCommand(CommandOpen, IntPtr.Zero))
-            {
-                Sounds = new string[1];
-                Sounds[0] = SoundName;
-                return true;
-            }
-        }
-        else if (!Sounds.Contains(SoundName))
-        {
-            if (SendMciCommand(CommandOpen, IntPtr.Zero))
-            {
-                Array.Resize(ref Sounds, Sounds.Length + 1);
-                Sounds[Sounds.Length - 1] = SoundName;
-                return true;
-            }
-        }
-    }
-
-    Debug.Print($"The sound was not added {SoundName}");
-    return false;
-}
-```
-
-- **Private Field**: `private string[]? Sounds;` is an array that will hold the names of the sounds we have added.
-- **Method `AddSound`**:
-  - Checks if `SoundName` is not empty and if the file exists.
-  - Constructs a command to open the sound file and assigns it an alias.
-  - If `Sounds` is null (no sounds added yet), it opens the sound file and initializes the array.
-  - If sounds already exist, it checks if the sound is not already in the array before adding it.
-  - Returns `true` if the sound was successfully added; otherwise, it logs a message and returns `false`.
 
  [Index](#index)
 
