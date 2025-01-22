@@ -628,7 +628,7 @@ By following these steps, you can easily add any existing MP3 file or other reso
 
 
 
- [Namespaces and Struct Definition](#namespaces-and-struct-definition)
+ [Namespaces](#namespaces)
  
  [Adding Sounds](#adding-sounds)
  
