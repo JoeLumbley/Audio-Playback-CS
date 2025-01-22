@@ -510,11 +510,13 @@ To add a resource file to your Visual Studio project, follow these steps:
    - Name your resource file (e.g., `Resource1.resx`) and click `Add`.
 
   
-![010](https://github.com/user-attachments/assets/a7ecfd06-8c4a-4230-8110-e22aec1f16b5)
+![005](https://github.com/user-attachments/assets/4c3c760e-7673-4666-a6cb-5080983a23cd)
 
 
 
-![006](https://github.com/user-attachments/assets/c70414fa-1563-4e71-8286-9c0de9c04db3)
+![006](https://github.com/user-attachments/assets/c193c0d4-a884-4613-9fd2-d3910f0ea23b)
+
+
 
 2. **Open the Resource Editor**:
    - Double-click the newly created `.resx` file to open the resource editor.
