@@ -191,6 +191,8 @@ Prints a debug message and returns `False` if the sound could not be added.
 
 ## Setting Volume
 
+### SetVolume Method
+
 ```csharp
 public bool SetVolume(string SoundName, int Level)
 {
@@ -217,6 +219,8 @@ public bool SetVolume(string SoundName, int Level)
 
 
 ## Looping Sounds
+
+### LoopSound Method
 
 ```csharp
 public bool LoopSound(string SoundName)
@@ -246,6 +250,8 @@ public bool LoopSound(string SoundName)
 
 ## Playing Sounds
 
+### PlaySound Method
+
 ```csharp
 private bool PlaySound(string SoundName)
 {
@@ -273,6 +279,8 @@ private bool PlaySound(string SoundName)
 
 
 ## Pausing Sounds
+
+### PauseSound Method
 
 ```csharp
 public bool PauseSound(string SoundName)
@@ -628,10 +636,18 @@ By following these steps, you can easily add any existing MP3 file or other reso
 
 
 
- [Namespaces](#namespaces)
+- [Namespaces](#namespaces)
+
+- [AudioPlayer Structure](#audioPlayer-structure)
+
+- [Dll Import](#dll-import)
  
  [Adding Sounds](#adding-sounds)
  
+- [Sounds Array](#sounds-array)
+ 
+- [AddSound Method](#addSound-method)
+
  [Setting Volume](#setting-volume)
  
  [Looping Sounds](#looping-sounds)
