@@ -502,58 +502,52 @@ private void CreateFileFromResource(string filePath, byte[] resource)
 
 ## Adding Resources
 
-To add an existing MP3 file to the resource file `Resource1`, follow these steps:
+To add a resource file to your Visual Studio project, follow these steps:
 
- **Open the Resource File**:
-   - In your Visual Studio project, locate the `Resource1.resx` file. This file is in the **"Solution Explorer"** panel of your project.
-
- **Edit the Resource File**:
-   - Double-click on `Resource1.resx` to open the resource editor.
-
+1. **Add a New Resource File**:
+   - From the **Project** menu, select `Add New Item...`.
+   - In the dialog that appears, choose `Resource File` from the list of templates.
+   - Name your resource file (e.g., `Resource1.resx`) and click `Add`.
 
   
-![004](https://github.com/user-attachments/assets/0ee66adf-b0b6-4f38-aea6-13753e3608d9)
+![010](https://github.com/user-attachments/assets/a7ecfd06-8c4a-4230-8110-e22aec1f16b5)
 
 
 
+![006](https://github.com/user-attachments/assets/c70414fa-1563-4e71-8286-9c0de9c04db3)
 
- **Add Existing File**:
-   - In the resource editor, click on the **"Green Plus Sign"** to add a new resource.
-   - Select the type **"File"** and then choose **"Add Existing File..."**.
+2. **Open the Resource Editor**:
+   - Double-click the newly created `.resx` file to open the resource editor.
 
- **Select Your MP3 File**:
-   - Navigate to the location of your MP3 file in the file dialog that appears.
-   - Select the MP3 file you wish to add and click **"Open"**.
+![009](https://github.com/user-attachments/assets/be296067-b008-4efa-b981-bf4d7e88f3f2)
 
 
-![003](https://github.com/user-attachments/assets/2c97331f-3adb-4e6f-aafa-78a7de57165c)
+3. **Add Existing Files**:
+   - In the resource editor, click on the **Green Plus Sign** or right-click in the resource pane and select `Add Resource`.
+   - Choose `Add Existing File...` from the context menu.
+   - Navigate to the location of the MP3 file (or any other resource file) you want to add, select it, and click `Open`.
 
 
+![011](https://github.com/user-attachments/assets/d2cb9a9c-d395-4d91-8f7d-47e3c94b37bc)
 
- **Verify the Addition**:
-   - Ensure that your MP3 file appears in the list of resources in the resource editor. It should now be accessible via the `Resource1` class in your code.
+4. **Verify the Addition**:
+   - Ensure that your MP3 file appears in the list of resources in the resource editor. It should now be accessible via the Resource class in your code.
 
- **Accessing the Resource in Code**:
-   - You can access the added MP3 file in your code using the following syntax:
-     ```csharp
-     
-     // Replace 'CashCollected' with the name of your MP3 file
-     CreateFileFromResource(filePath, Audio_Playback_CS.Resource1.CashCollected);
-     
+5. **Accessing the Resource in Code**:
+   - You can access the added resource in your code using the following syntax:
+     ```vb
+     CreateFileFromResource(filePath, YourProjectNamespace.Resource1.YourResourceName)
      ```
 
- **Save Changes**:
-   - Save the changes to the `Resource1.resx` file.
+6. **Save Changes**:
+   - Don’t forget to save your changes to the `.resx` file.
+  
 
-By following these steps, you can easily add any existing MP3 file to your resources and use it within your Audio Playback application.
+![012](https://github.com/user-attachments/assets/6641c30d-d002-4e06-a783-d2d3761c8c9e)
 
+By following these steps, you can easily add any existing MP3 file or other resources to your Visual Studio project and utilize them within your Audio Playback application.
 
-
-
-
-
-
-
+---
 ---
 
 ## Index
