@@ -91,6 +91,23 @@ private static extern int mciSendStringW([MarshalAs(UnmanagedType.LPTStr)] strin
 
 ## Adding Sounds
 
+
+
+### Sounds Array
+
+```csharp
+
+private string[]? Sounds;
+
+```
+
+This declares an array named `Sounds` to store the names of sounds that have been added.
+
+
+
+
+
+
 ```csharp
 private string[]? Sounds;
 
