@@ -45,7 +45,7 @@ In this walkthrough, we will break down the code that implements an `AudioPlayer
 ---
 
 
-## Namespaces and Struct Definition
+## Namespaces
 
 ```csharp
 using System.Runtime.InteropServices;
@@ -56,7 +56,18 @@ namespace Audio_Playback_CS
 ```
 
 - **Namespaces**: These are used to organize code and avoid naming conflicts. Here, we are importing `System.Runtime.InteropServices`, `System.Text`, and `System.Diagnostics`.
+
+## AudioPlayer Structure
+
+```csharp
+
+public struct AudioPlayer
+
+```
+
 - **Struct Definition**: The `AudioPlayer` struct is defined to encapsulate the functionalities related to audio playback.
+
+
 
 ### DllImport Attribute
 ```csharp
