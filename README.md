@@ -104,7 +104,87 @@ private string[]? Sounds;
 This declares an array named `Sounds` to store the names of sounds that have been added.
 
 
+### AddSound Method
 
+```csharp
+
+public bool AddSound(string SoundName, string FilePath)
+
+```
+
+This method adds a sound to the player. It takes the name of the sound and the path to the sound file as parameters.
+
+```csharp
+
+if (!string.IsNullOrWhiteSpace(SoundName) && File.Exists(FilePath))
+
+```
+
+Checks if the sound name is not empty or whitespace and if the file exists.
+
+```csharp
+
+string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
+
+```
+
+Creates a command string to open the sound file and assign it an alias.
+
+```csharp
+
+if (Sounds == null)
+
+```
+
+Checks if the `Sounds` array is uninitialized.
+
+```csharp
+
+if (SendMciCommand(CommandOpen, IntPtr.Zero))
+
+```
+
+Sends the command to open the sound file.
+
+
+
+
+
+
+
+
+
+
+```vb.net
+ReDim Sounds(0)
+Sounds(0) = SoundName
+Return True
+```
+Initializes the `Sounds` array with the new sound and returns `True`.
+
+
+
+
+
+
+
+```vb.net
+ElseIf Not Sounds.Contains(SoundName) Then
+```
+Checks if the sound is not already in the array.
+
+```vb.net
+Array.Resize(Sounds, Sounds.Length + 1)
+Sounds(Sounds.Length - 1) = SoundName
+Return True
+```
+Adds the new sound to the `Sounds` array and returns `True`.
+
+```vb.net
+Debug.Print($"{SoundName} not added to sounds.")
+Return False
+```
+Prints a debug message and returns `False` if the sound could not be added.
 
 
 
