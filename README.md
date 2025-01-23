@@ -472,6 +472,10 @@ private string GetStatus(string SoundName, string StatusType)
 
 ## Closing Sounds
 
+
+### CloseSounds Method
+
+
 ```csharp
 
 public void CloseSounds()
@@ -494,7 +498,6 @@ public void CloseSounds()
 
 ```
 
-- **Method `CloseSounds`**:
   - Closes all open sounds by sending a close command for each sound in the `Sounds` array.
   - **`Sounds = null;`**: This line sets the `Sounds` array to `null`. By doing this, it effectively clears the reference to the array, ensuring that all resources associated with the sounds are released. It also prevents further usage of the array without reinitializing it, which is a good practice for memory management and avoiding potential errors in your application.
 
