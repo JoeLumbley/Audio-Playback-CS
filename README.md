@@ -468,9 +468,12 @@ private string GetStatus(string SoundName, string StatusType)
 ---
 
 
+
+
 ## Closing Sounds
 
 ```csharp
+
 public void CloseSounds()
 {
     if (Sounds != null)
@@ -478,18 +481,32 @@ public void CloseSounds()
         foreach (string Sound in Sounds)
         {
             string CommandClose = $"close {Sound}";
+
             SendMciCommand(CommandClose, IntPtr.Zero);
+
         }
+
+        Sounds = null;
+
     }
+
 }
+
 ```
 
 - **Method `CloseSounds`**:
   - Closes all open sounds by sending a close command for each sound in the `Sounds` array.
+  - **`Sounds = null;`**: This line sets the `Sounds` array to `null`. By doing this, it effectively clears the reference to the array, ensuring that all resources associated with the sounds are released. It also prevents further usage of the array without reinitializing it, which is a good practice for memory management and avoiding potential errors in your application.
 
- [Index](#index)
+
+[Index](#index)
 
 ---
+
+
+
+
+
 
 
 ## Form Class and Event Handlers
