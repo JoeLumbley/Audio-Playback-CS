@@ -156,6 +156,27 @@ string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
 
 Creates a command string to open the sound file and assign it an alias.
 
+
+The escape character `\` is used to include special characters in a string. In this case, the escape sequence `\"` allows you to include a double quote within a string that's also enclosed in double quotes.
+
+Here's why it's needed: If your file path has spaces, it needs to be enclosed in quotes when you use it in commands. Without escaping the quotes, the string would get cut off at the first double quote it encounters.
+
+For example, let's say your file path is `C:\My Files\file.wav`. 
+
+- Without escaping: `string CommandOpen = $"open "{FilePath}" alias {SoundName}";` would cause an error because the quotes are not properly handled.
+- With escaping: `string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";` ensures that the quotes are included as part of the string, making it `open "C:\My Files\file.wav" alias SoundAlias`.
+
+This way, the entire file path is correctly recognized even if it contains spaces, and the command will execute as expected. 
+
+
+
+
+
+
+
+
+
+
 ```csharp
 
 if (Sounds == null)
