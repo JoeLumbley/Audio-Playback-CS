@@ -157,7 +157,7 @@ string CommandOpen = $"open \"{FilePath}\" alias {SoundName}";
 Creates a command string to open the sound file and assign it an alias.
 
 
-The escape character `\` is used to include special characters in a string. In this case, the escape sequence `\"` allows you to include a double quote within a string that's also enclosed in double quotes.
+The **escape character `\`** is used to include special characters in a string. In this case, the escape sequence `\"` allows you to include a double quote within a string that's also enclosed in double quotes.
 
 Here's why it's needed: If your file path has spaces, it needs to be enclosed in quotes when you use it in commands. Without escaping the quotes, the string would get cut off at the first double quote it encounters.
 
