@@ -272,6 +272,8 @@ namespace Audio_Playback_CS
 
                 }
 
+                Sounds = null;
+
             }
 
         }
