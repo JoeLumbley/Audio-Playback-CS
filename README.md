@@ -697,6 +697,25 @@ By following these steps, you can easily add any existing MP3 file or other reso
 
 ---
 
+
+
+
+# Related Projects
+
+This project serves as a direct port of the original Audio Playback project created in VB.NET, which you can also explore for a different perspective on the same concepts. For more information and to access the complete code, visit the [Audio Playback Repository](https://github.com/JoeLumbley/Audio-Playback) and the [Audio Playback C# Repository](https://github.com/JoeLumbley/Audio-Playback-CS). Happy coding!
+
+
+
+
+![013](https://github.com/user-attachments/assets/503ac6a1-c71d-4a26-ba3e-f6122c83cbe4)
+
+
+
+
+
+---
+
+
 ## Index
 
 
@@ -749,27 +768,12 @@ Feel free to experiment with the code and modify it to enhance your learning exp
 
 
 
-
-
-
-
-
 ---
 
-# Related Projects
-
-This project serves as a direct port of the original Audio Playback project created in VB.NET, which you can also explore for a different perspective on the same concepts. For more information and to access the complete code, visit the [Audio Playback Repository](https://github.com/JoeLumbley/Audio-Playback) and the [Audio Playback C# Repository](https://github.com/JoeLumbley/Audio-Playback-CS). Happy coding!
 
 
 
 
-![013](https://github.com/user-attachments/assets/503ac6a1-c71d-4a26-ba3e-f6122c83cbe4)
-
-
-
-
-
----
 
 
 
